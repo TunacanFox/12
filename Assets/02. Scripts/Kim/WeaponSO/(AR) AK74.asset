@@ -17,7 +17,8 @@ MonoBehaviour:
   damage: 0
   range: 350
   fireRate: 600
-  magazineSize: 30
+  ammo: 40
+  magazineSize: 6
   totalMagazine: 120
   weaponPrefab: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6,
     type: 3}

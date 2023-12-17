@@ -639,6 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692d18b46f8fe2e4eb014e30b9c2d020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon_Test: {fileID: 5201328125655207198}
   foundationPrefab: {fileID: 3459069622547494190}
   foundationTransform: {fileID: 7600181554967588906}
   weaponVector: {x: 0, y: 0, z: 0}
@@ -1433,6 +1434,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3492213810793711021}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5201328125655207198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8671682912191498419, guid: ee329c3cd08e58645834d20702d7f6c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 3492213810793711021}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491306665779563291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07dac190b9f9afb40b1827086acb0655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6382064183014302902
 PrefabInstance:
   m_ObjectHideFlags: 0

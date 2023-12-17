@@ -5,8 +5,11 @@ using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
 
+using FPS.WeaponSO; //스크립터블 오브젝트 데이터 끌고 오기 위해서 사용
+
 public class Weapon : MonoBehaviour
 {
+
     public int damage;
     public float fireRate;
 
@@ -55,12 +58,13 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _photonView = GetComponent<PhotonView>();
-        //magText.text = mag.ToString();
-        //ammoText.text = ammo + "/" + magAmmo;
 
+        _photonView = GetComponent<PhotonView>();
+        //magText.text = mag.ToString(); //아래로 대체되었지만, 인지하라고 주석처리
+        //ammoText.text = ammo + "/" + magAmmo;
         magText = GameObject.Find("MagText").GetComponent<TextMeshProUGUI>();
         ammoText = GameObject.Find("AmmoText").GetComponent<TextMeshProUGUI>();
+
 
 
         originalPosition = transform.localPosition;
@@ -100,6 +104,17 @@ public class Weapon : MonoBehaviour
         }
     }
 
+
+    public void WeaponUISetup(WeaponDataSO weaponData)
+    {
+        Debug.Log("호출은 되나??"); ///호출조차 안 된다
+
+        magText.text = weaponData.magazineSize.ToString();
+        ammoText.text = weaponData.ammo.ToString();
+        Debug.Log("WeaponUISetup 함수 실행됐다, weaponData: " + weaponData);
+    }
+
+
     void Reload()
     {
         animation.Play(reload.name);
@@ -118,7 +133,8 @@ public class Weapon : MonoBehaviour
         recoiling = true;
         recovering = false;
 
-        Ray ray = new Ray(camera.transform.position, camera.transform.forward);
+        Ray ray = new Ray(camera.transform.position, camera.transform.forward); //오류: UnassignedReferenceException: The variable camera of Weapon has not been assigned.
+                                                                                //You probably need to assign the camera variable of the Weapon script in the inspector.
         RaycastHit hit;
         int playermask = 1 << gameObject.layer;
 

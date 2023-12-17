@@ -28,8 +28,9 @@ namespace FPS.WeaponSO
         public float damage; //뎀
         public float range; //사거리
         public float fireRate; //발사 주기
-        public int magazineSize; //탄창 크기
-        public int totalMagazine; //주어지는 총 탄창 큰기
+        public int ammo; //총에 들어가는 총알 개수
+        public int magazineSize; //탄창 개수
+        public int totalMagazine; //주어지는 총 탄창 크기
 
         public GameObject weaponPrefab;
         // 기타 필요한 총기 특성들 추가...
