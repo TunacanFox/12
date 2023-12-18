@@ -1,6 +1,10 @@
 using UnityEngine;
 using FPS.WeaponSO;
 using FPS.WeaponHandler;
+<<<<<<< Updated upstream
+=======
+using FPS.Lee.WeaponDetail;
+>>>>>>> Stashed changes
 
 namespace FPS.WeaponHandler
 {
@@ -8,9 +12,12 @@ namespace FPS.WeaponHandler
     //총기의 세부 스탯은 WeaponStat으로 이관, 이 클래스로 불러온다
     public class WeaponFactory : MonoBehaviour
     {
+<<<<<<< Updated upstream
         public Weapon weapon_Test; //테스트
 
 
+=======
+>>>>>>> Stashed changes
         //Instantiate를 위한 변수
         //Canvas의 자식인 Image의 자식으로 생성하기 위해 정보2개를 씀.
         public GameObject foundationPrefab; //부모1
@@ -71,9 +78,13 @@ namespace FPS.WeaponHandler
             Debug.Log("WeaponData.magazineSize: " + weaponData.magazineSize); //값 존재함
             Debug.Log("WeaponData.ammo: " + weaponData.ammo); //값 존재함
             Debug.Log("WeaponUISetup 실행되기 직전");
+<<<<<<< Updated upstream
             weapon_Test.WeaponUISetup(weaponData); //테스트 무기 UI의 TextMeshPro를 바꿀 수 있나 테스트 
                                                    //호출 조차 안된다.
+=======
+>>>>>>> Stashed changes
 
+            
 
             if (weaponData != null)
             {
@@ -82,10 +93,17 @@ namespace FPS.WeaponHandler
                 GameObject weaponInstance = Instantiate(weaponPrefab, weaponVector, weaponRotation, foundationTransform);
                 //WeaponStat weaponStat = weaponInstance.GetComponent<WeaponStat>();
                 WeaponStat weaponStat = weaponInstance.AddComponent<WeaponStat>();
+                Weapon forWeaponScriptAdd = weaponInstance.AddComponent<Weapon>(); //Weapon 스크립트를 붙여넣기 위해 존재하는 녀석
+
+                forWeaponScriptAdd.WeaponUISetup(weaponData); //테스트 무기 UI의 TextMeshPro를 바꿀 수 있나 테스트 
+                                                       //호출 조차 안된다.
 
 
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                 //새로 만든 weaponInstance에 weaponStat 스크립트 붙이기
                 if (weaponStat != null)
                 {

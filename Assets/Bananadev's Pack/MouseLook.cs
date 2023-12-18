@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 ﻿using UnityEngine;
+=======
+﻿using Photon.Pun;
+using UnityEngine;
+>>>>>>> Stashed changes
 
 public class MouseLook : MonoBehaviour
 {
@@ -12,8 +17,12 @@ public class MouseLook : MonoBehaviour
     [Space]
     public Vector2 smoothing = new Vector2(3, 3);
 
+<<<<<<< Updated upstream
     [Header("First Person")]
     public GameObject characterBody;
+=======
+    private Transform _characterBody;
+>>>>>>> Stashed changes
 
     private Vector2 targetDirection;
     private Vector2 targetCharacterDirection;
@@ -33,10 +42,6 @@ public class MouseLook : MonoBehaviour
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
 
-        // Set target direction for the character body to its inital state.
-        if (characterBody)
-            targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
-        
         if (lockCursor)
             LockCursor();
 
@@ -79,10 +84,17 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation * Vector3.right) * targetOrientation;
 
         // If there's a character body that acts as a parent to the camera
+<<<<<<< Updated upstream
         if (characterBody)
         {
             var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, Vector3.up);
             characterBody.transform.localRotation = yRotation * targetCharacterOrientation;
+=======
+        if (_characterBody)
+        {
+            var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, Vector3.up);
+            _characterBody.transform.localRotation = yRotation * targetCharacterOrientation;
+>>>>>>> Stashed changes
         }
         /*else
         {

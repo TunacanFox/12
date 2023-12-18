@@ -177,7 +177,6 @@ GameObject:
   - component: {fileID: 4519716788627816}
   - component: {fileID: 33705837635148522}
   - component: {fileID: 23860282398207496}
-  - component: {fileID: 8671682912191498419}
   - component: {fileID: 5701709486336649479}
   - component: {fileID: 3113857026031514220}
   - component: {fileID: 40359166617992189}
@@ -256,34 +255,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8671682912191498419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487774384131766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07dac190b9f9afb40b1827086acb0655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 25
-  fireRate: 10
-  camera: {fileID: 0}
-  hitVFX: {fileID: 6461938295811229668, guid: f8ba958850baee44eb5ad0dfa1b5dbe0, type: 3}
-  removeFireHole: 0
-  mag: 5
-  ammo: 30
-  magAmmo: 30
-  magText: {fileID: 0}
-  ammoText: {fileID: 0}
-  animation: {fileID: 3113857026031514220}
-  reload: {fileID: 7400000, guid: ff2fc65bec35bfe4e88db2a18e28847b, type: 2}
-  recoverPercent: 0.7
-  recoilUp: 0.05
-  recoilBack: 0.05
-  recovering: 0
 --- !u!114 &5701709486336649479
 MonoBehaviour:
   m_ObjectHideFlags: 0

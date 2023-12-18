@@ -26,7 +26,11 @@ namespace FPS.WeaponHandler
             range = weaponData.range;
             fireRate = weaponData.fireRate;
             magazineSize = weaponData.magazineSize;
+<<<<<<< Updated upstream
             totalMagazine = weaponData.totalMagazine;
+=======
+            totalMagazine = weaponData.fullMagazine;
+>>>>>>> Stashed changes
 
             weaponPrefab = weaponData.weaponPrefab;
         }
