@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
@@ -12,8 +13,7 @@ public class MouseLook : MonoBehaviour
     [Space]
     public Vector2 smoothing = new Vector2(3, 3);
 
-    [Header("First Person")]
-    public GameObject characterBody;
+    private Transform _characterBody;
 
     private Vector2 targetDirection;
     private Vector2 targetCharacterDirection;
@@ -33,10 +33,6 @@ public class MouseLook : MonoBehaviour
         // Set target direction to the camera's initial orientation.
         targetDirection = transform.localRotation.eulerAngles;
 
-        // Set target direction for the character body to its inital state.
-        if (characterBody)
-            targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
-        
         if (lockCursor)
             LockCursor();
 
@@ -51,6 +47,17 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+        if (PlayerSetup.spawned.TryGetValue(PhotonNetwork.LocalPlayer.UserId, out PlayerSetup player))
+        {
+            _characterBody = player.transform;
+            targetCharacterDirection = _characterBody.transform.localRotation.eulerAngles;
+        }
+        else
+        {
+            return;
+        }
+
+
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);
         var targetCharacterOrientation = Quaternion.Euler(targetCharacterDirection);
@@ -79,10 +86,10 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation * Vector3.right) * targetOrientation;
 
         // If there's a character body that acts as a parent to the camera
-        if (characterBody)
+        if (_characterBody)
         {
             var yRotation = Quaternion.AngleAxis(_mouseAbsolute.x, Vector3.up);
-            characterBody.transform.localRotation = yRotation * targetCharacterOrientation;
+            _characterBody.transform.localRotation = yRotation * targetCharacterOrientation;
         }
         /*else
         {

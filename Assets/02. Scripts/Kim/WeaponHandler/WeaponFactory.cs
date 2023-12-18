@@ -1,6 +1,7 @@
 using UnityEngine;
 using FPS.WeaponSO;
 using FPS.WeaponHandler;
+using FPS.Lee.WeaponDetail;
 
 namespace FPS.WeaponHandler
 {
@@ -8,9 +9,6 @@ namespace FPS.WeaponHandler
     //총기의 세부 스탯은 WeaponStat으로 이관, 이 클래스로 불러온다
     public class WeaponFactory : MonoBehaviour
     {
-        public Weapon weapon_Test; //테스트
-
-
         //Instantiate를 위한 변수
         //Canvas의 자식인 Image의 자식으로 생성하기 위해 정보2개를 씀.
         public GameObject foundationPrefab; //부모1
@@ -35,12 +33,6 @@ namespace FPS.WeaponHandler
             //foundationTransform = foundationPrefab.transform.Find("Main Camera"); //갑자기 오류
             //trackingPositionSettingPrefab = foundationTransform.transform.Find("PositionSettingPrefab"); //얘도 오류나서 직접 넣는걸로 변경
 
-            if (weapon_Test == null)
-            {
-                Debug.LogError("Weapon is not assigned in WeaponSwap");
-            }
-
-            //Test = GetComponent<Weapon>(); //테스트용
         }
 
         private void Update()
@@ -71,9 +63,8 @@ namespace FPS.WeaponHandler
             Debug.Log("WeaponData.magazineSize: " + weaponData.magazineSize); //값 존재함
             Debug.Log("WeaponData.ammo: " + weaponData.ammo); //값 존재함
             Debug.Log("WeaponUISetup 실행되기 직전");
-            weapon_Test.WeaponUISetup(weaponData); //테스트 무기 UI의 TextMeshPro를 바꿀 수 있나 테스트 
-                                                   //호출 조차 안된다.
 
+            
 
             if (weaponData != null)
             {
@@ -82,7 +73,10 @@ namespace FPS.WeaponHandler
                 GameObject weaponInstance = Instantiate(weaponPrefab, weaponVector, weaponRotation, foundationTransform);
                 //WeaponStat weaponStat = weaponInstance.GetComponent<WeaponStat>();
                 WeaponStat weaponStat = weaponInstance.AddComponent<WeaponStat>();
+                Weapon forWeaponScriptAdd = weaponInstance.AddComponent<Weapon>(); //Weapon 스크립트를 붙여넣기 위해 존재하는 녀석
 
+                forWeaponScriptAdd.WeaponUISetup(weaponData); //테스트 무기 UI의 TextMeshPro를 바꿀 수 있나 테스트 
+                                                       //호출 조차 안된다.
 
 
 

@@ -6,16 +6,21 @@ using TMPro;
 
 public class PlayerSetup : MonoBehaviour
 {
-    public Movement movement;
-    public GameObject camera;
-
+    public static Dictionary<string, PlayerSetup> spawned = new Dictionary<string, PlayerSetup>();
     public string nickName;
 
     public TextMeshPro nickNameText;
-    public void IsLocalPlayer()
+    private PhotonView _photonView;
+
+    private void Awake()
     {
-        movement.enabled = true;
-        camera.SetActive(true);
+        _photonView = GetComponent<PhotonView>();
+        spawned.Add(_photonView.Owner.UserId, this);
+    }
+
+    private void OnDestroy()
+    {
+        spawned.Remove(_photonView.Owner.UserId);
     }
 
     [PunRPC]

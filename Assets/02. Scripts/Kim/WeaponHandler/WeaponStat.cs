@@ -26,7 +26,7 @@ namespace FPS.WeaponHandler
             range = weaponData.range;
             fireRate = weaponData.fireRate;
             magazineSize = weaponData.magazineSize;
-            totalMagazine = weaponData.totalMagazine;
+            totalMagazine = weaponData.fullMagazine;
 
             weaponPrefab = weaponData.weaponPrefab;
         }

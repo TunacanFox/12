@@ -9,7 +9,6 @@ public class Health : MonoBehaviour
 {
 
     public int health;
-    public bool isLocalPlayer;
 
     [Header("UI")]
     public TextMeshProUGUI healthText;
@@ -54,12 +53,16 @@ public class Health : MonoBehaviour
         health -= damgage;
 
         healthText.text = health.ToString();
-            if (health <= 0)
+        if (health <= 0)
         {
-            if(isLocalPlayer)
+            if (_photonView.Owner.IsLocal)
+            {
+                PhotonNetwork.Destroy(gameObject);
                 RoomManager.instance.SpawnPlayer();
-
-            Destroy(gameObject);
+            }
         }
     }
 }
+
+
+

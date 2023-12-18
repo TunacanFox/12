@@ -38,9 +38,11 @@ namespace FPS.WeaponSO
 
         private void Awake() //이 녀석이 무조건 먼저 돌아가서 초기화를 끝마쳐야만 한다.
         {
-            Debug.Log("WeaponSettingAssets.cs Awake has been Start");
+            //이곳의 Debug.Log들은 총기가 존재하지 않을 경우 켜서 확인하는 용도다
+
+            //Debug.Log("WeaponSettingAssets.cs Awake has been Start");
             instance = this; //디버깅: instance 값 nulll, _weaponDataSOSrttings값 null
-            Debug.Log("인스턴스: " + instance); //출력하면 WeaponSettingAssets이 출력된다.
+            //Debug.Log("인스턴스: " + instance); //출력하면 WeaponSettingAssets이 출력된다.
 
             _weaponDataSOSettings = new Dictionary<string, WeaponDataSO>(); // Count = 4, 값 = null
             //_weaponDataSOSettings Count = 0~4의도된 곳 까지 foreach문 잘 돈다.  이름도 다르고 잘 들어간다.
@@ -48,8 +50,8 @@ namespace FPS.WeaponSO
             { //data = AAA, data.name = AAA, _weaponDataSOSettings.Count = 0
                 _weaponDataSOSettings.Add(data.name, data); //_skillCastSettingList의 요소 하나하나를 여기에 Add함
                 
-                Debug.Log("Added Weapon data to dictionary: " + data.name); //딕셔너리 키가 존재하는지 출력하여 확인.
-                Debug.Log("_weaponDataSOSettings: " + _weaponDataSOSettings); //check
+                //Debug.Log("Added Weapon data to dictionary: " + data.name); //딕셔너리 키가 존재하는지 출력하여 확인.
+                //Debug.Log("_weaponDataSOSettings: " + _weaponDataSOSettings); //check
 
             }
             _weaponDataSOList = null; //참조 해제

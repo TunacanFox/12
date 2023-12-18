@@ -14,11 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   weaponName: (AR) AK74
-  damage: 0
-  range: 350
-  fireRate: 600
+  weaponNameFinder: AK74
+  damage: 25
+  fireRate: 10
+  range: 0
   ammo: 40
   magazineSize: 6
-  totalMagazine: 120
+  fullMagazine: 40
   weaponPrefab: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6,
     type: 3}
+  hitVFX: {fileID: 6461938295811229668, guid: 94c077a798bd0fc43a47cb78d7e49314, type: 3}
+  removeFireHole: 1
+  reloadAnimation: {fileID: 7400000, guid: ff2fc65bec35bfe4e88db2a18e28847b, type: 2}
+  recoverPercent: 0.7
+  recoilUp: 0.05
+  recoilBack: 0.05
+  recovering: 0
