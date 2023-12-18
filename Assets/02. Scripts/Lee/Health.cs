@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public bool GitTest;
 
     public int health;
     public bool isLocalPlayer;
