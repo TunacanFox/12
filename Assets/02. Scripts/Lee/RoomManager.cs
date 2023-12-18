@@ -61,7 +61,7 @@ public class RoomManager : MonoBehaviourPunCallbacks
 
         Debug.Log("We're connecte and in a room now");
     }
-    public override void OnJoinedRoom() //Client°¡ ´Ù¸¥¹æ¿¡ Á¶ÀÎÇßÀ»¶§ ¹æÀå X 
+    public override void OnJoinedRoom() //Clientê°€ ë‹¤ë¥¸ë°©ì— ì¡°ì¸í–ˆì„ë•Œ ë°©ì¥ X 
     {
         base.OnJoinedRoom();
         Debug.Log("Joined a room");
@@ -75,6 +75,9 @@ public class RoomManager : MonoBehaviourPunCallbacks
         GameObject _player = PhotonNetwork.Instantiate(player.name,
                                    spawnPoint.position,
                                    Quaternion.identity);
+
+        _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        _player.GetComponent<Health>().isLocalPlayer = true;
 
         _player.GetComponent<PhotonView>().RPC("SetNickname", RpcTarget.AllBuffered, nickname);
     }

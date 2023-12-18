@@ -8,17 +8,17 @@ namespace FPS.WeaponSO
     {
         public static WeaponSettingAssets instance;
 
-        //Å×½ºÆ®¿ë
+        //í…ŒìŠ¤íŠ¸ìš©
         public List<string> GetAllWeaponNames()
         {
             return _weaponDataSOSettings.Keys.ToList();
         }
 
-        //public WeaponDataSO this[string name] => _weaponDataSOSettings[name]; //Å° È®ÀÎÀ» À§ÇØ ¾Æ·¡¿¡ get ºÎºĞ Ãß°¡µÈ °ÍÀ¸·Î º¯°æ
+        //public WeaponDataSO this[string name] => _weaponDataSOSettings[name]; //í‚¤ í™•ì¸ì„ ìœ„í•´ ì•„ë˜ì— get ë¶€ë¶„ ì¶”ê°€ëœ ê²ƒìœ¼ë¡œ ë³€ê²½
         [SerializeField] private Dictionary<string, WeaponDataSO> _weaponDataSOSettings;
-        [SerializeField] private List<WeaponDataSO> _weaponDataSOList; //ScriptableObjectµéÀÌ ÀúÀåµÇ´Â ¸®½ºÆ®
+        [SerializeField] private List<WeaponDataSO> _weaponDataSOList; //ScriptableObjectë“¤ì´ ì €ì¥ë˜ëŠ” ë¦¬ìŠ¤íŠ¸
 
-        public WeaponDataSO this[string name] //this WeaponSettingAssets ½Ì±ÛÅæ
+        public WeaponDataSO this[string name] //this WeaponSettingAssets ì‹±ê¸€í†¤
         {
             get
             {
@@ -36,25 +36,31 @@ namespace FPS.WeaponSO
         }
 
 
-        private void Awake() //ÀÌ ³à¼®ÀÌ ¹«Á¶°Ç ¸ÕÀú µ¹¾Æ°¡¼­ ÃÊ±âÈ­¸¦ ³¡¸¶ÃÄ¾ß¸¸ ÇÑ´Ù.
+        private void Awake() //ì´ ë…€ì„ì´ ë¬´ì¡°ê±´ ë¨¼ì € ëŒì•„ê°€ì„œ ì´ˆê¸°í™”ë¥¼ ëë§ˆì³ì•¼ë§Œ í•œë‹¤.
         {
-            //ÀÌ°÷ÀÇ Debug.LogµéÀº ÃÑ±â°¡ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì ÄÑ¼­ È®ÀÎÇÏ´Â ¿ëµµ´Ù
+            //ì´ê³³ì˜ Debug.Logë“¤ì€ ì´ê¸°ê°€ ì¡´ì¬í•˜ì§€ ì•Šì„ ê²½ìš° ì¼œì„œ í™•ì¸í•˜ëŠ” ìš©ë„ë‹¤
 
             //Debug.Log("WeaponSettingAssets.cs Awake has been Start");
-            instance = this; //µğ¹ö±ë: instance °ª nulll, _weaponDataSOSrttings°ª null
-            //Debug.Log("ÀÎ½ºÅÏ½º: " + instance); //Ãâ·ÂÇÏ¸é WeaponSettingAssetsÀÌ Ãâ·ÂµÈ´Ù.
+            instance = this; //ë””ë²„ê¹…: instance ê°’ nulll, _weaponDataSOSrttingsê°’ null
+            //Debug.Log("ì¸ìŠ¤í„´ìŠ¤: " + instance); //ì¶œë ¥í•˜ë©´ WeaponSettingAssetsì´ ì¶œë ¥ëœë‹¤.
+            Debug.Log("WeaponSettingAssets.cs Awake has been Start");
+            instance = this; //ë””ë²„ê¹…: instance ê°’ nulll, _weaponDataSOSrttingsê°’ null
+            Debug.Log("ì¸ìŠ¤í„´ìŠ¤: " + instance); //ì¶œë ¥í•˜ë©´ WeaponSettingAssetsì´ ì¶œë ¥ëœë‹¤.
 
-            _weaponDataSOSettings = new Dictionary<string, WeaponDataSO>(); // Count = 4, °ª = null
-            //_weaponDataSOSettings Count = 0~4ÀÇµµµÈ °÷ ±îÁö foreach¹® Àß µ·´Ù.  ÀÌ¸§µµ ´Ù¸£°í Àß µé¾î°£´Ù.
+
+            _weaponDataSOSettings = new Dictionary<string, WeaponDataSO>(); // Count = 4, ê°’ = null
+            //_weaponDataSOSettings Count = 0~4ì˜ë„ëœ ê³³ ê¹Œì§€ foreachë¬¸ ì˜ ëˆë‹¤.  ì´ë¦„ë„ ë‹¤ë¥´ê³  ì˜ ë“¤ì–´ê°„ë‹¤.
             foreach (var data in _weaponDataSOList)
             { //data = AAA, data.name = AAA, _weaponDataSOSettings.Count = 0
-                _weaponDataSOSettings.Add(data.name, data); //_skillCastSettingListÀÇ ¿ä¼Ò ÇÏ³ªÇÏ³ª¸¦ ¿©±â¿¡ AddÇÔ
+                _weaponDataSOSettings.Add(data.name, data); //_skillCastSettingListì˜ ìš”ì†Œ í•˜ë‚˜í•˜ë‚˜ë¥¼ ì—¬ê¸°ì— Addí•¨
                 
-                //Debug.Log("Added Weapon data to dictionary: " + data.name); //µñ¼Å³Ê¸® Å°°¡ Á¸ÀçÇÏ´ÂÁö Ãâ·ÂÇÏ¿© È®ÀÎ.
+                //Debug.Log("Added Weapon data to dictionary: " + data.name); //ë”•ì…”ë„ˆë¦¬ í‚¤ê°€ ì¡´ì¬í•˜ëŠ”ì§€ ì¶œë ¥í•˜ì—¬ í™•ì¸.
                 //Debug.Log("_weaponDataSOSettings: " + _weaponDataSOSettings); //check
+                Debug.Log("Added Weapon data to dictionary: " + data.name); //ë”•ì…”ë„ˆë¦¬ í‚¤ê°€ ì¡´ì¬í•˜ëŠ”ì§€ ì¶œë ¥í•˜ì—¬ í™•ì¸.
+                Debug.Log("_weaponDataSOSettings: " + _weaponDataSOSettings); //check
 
             }
-            _weaponDataSOList = null; //ÂüÁ¶ ÇØÁ¦
+            _weaponDataSOList = null; //ì°¸ì¡° í•´ì œ
         }
     }
 

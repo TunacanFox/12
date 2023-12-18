@@ -1,37 +1,39 @@
 using UnityEngine;
 using FPS.WeaponSO;
 using FPS.WeaponHandler;
+
 using FPS.Lee.WeaponDetail;
 
 namespace FPS.WeaponHandler
 {
-    //ÃÑ±âÀÇ Vector°ª°ú Quaternion ±â¹İÀ¸·Î ÃÑ±â¸¦ ¸¸µé¾îÁÜ, ¸¸µé¾î¼­ 1ÀÎÄª È­¸éÀ¸·Î ¶ç¿öÁÖ´Â Å¬·¡½º
-    //ÃÑ±âÀÇ ¼¼ºÎ ½ºÅÈÀº WeaponStatÀ¸·Î ÀÌ°ü, ÀÌ Å¬·¡½º·Î ºÒ·¯¿Â´Ù
+    //ì´ê¸°ì˜ Vectorê°’ê³¼ Quaternion ê¸°ë°˜ìœ¼ë¡œ ì´ê¸°ë¥¼ ë§Œë“¤ì–´ì¤Œ, ë§Œë“¤ì–´ì„œ 1ì¸ì¹­ í™”ë©´ìœ¼ë¡œ ë„ì›Œì£¼ëŠ” í´ë˜ìŠ¤
+    //ì´ê¸°ì˜ ì„¸ë¶€ ìŠ¤íƒ¯ì€ WeaponStatìœ¼ë¡œ ì´ê´€, ì´ í´ë˜ìŠ¤ë¡œ ë¶ˆëŸ¬ì˜¨ë‹¤
     public class WeaponFactory : MonoBehaviour
     {
-        //Instantiate¸¦ À§ÇÑ º¯¼ö
-        //CanvasÀÇ ÀÚ½ÄÀÎ ImageÀÇ ÀÚ½ÄÀ¸·Î »ı¼ºÇÏ±â À§ÇØ Á¤º¸2°³¸¦ ¾¸.
-        public GameObject foundationPrefab; //ºÎ¸ğ1
-        public Transform foundationTransform; //ÀÚ½Ä1 ´Ù¸¥°Å Ãß°¡ÇÏÁö ¾Ê´Â ÀÌ»ó ÀÌ ³à¼®ÀÇ ÀÚ½ÄÀ¸·Î Instantiate¸¦ ³ÖÀ» °ÍÀÌ´Ù.
-        
-        //Instantiate¸¦ À§ÇÑ Vector, Rotation
-        public Vector3 weaponVector; //Åõ¸í ÇÁ¸®ÆÕÀÇ À§Ä¡
-        public Quaternion weaponRotation; //Åõ¸í ÇÁ¸®ÆÕÀÇ °¢µµ
-        public Transform trackingPositionSettingPrefab; //Åõ¸í ÇÁ¸®ÆÕ Á¤È®È÷ FindÇØ¼­ Vector, Rotation ¼³Á¤ÇÒ ¼ö ÀÖ°Ô ÇØÁÜ.
 
-        //Instantiate¸¦ À§ÇÑ ÇÁ¸®ÆÕ
-        public GameObject weaponPrefab; //»ı¼ºÇÒ ÇÁ¸®ÆÕ
+        //Instantiateë¥¼ ìœ„í•œ ë³€ìˆ˜
+        //Canvasì˜ ìì‹ì¸ Imageì˜ ìì‹ìœ¼ë¡œ ìƒì„±í•˜ê¸° ìœ„í•´ ì •ë³´2ê°œë¥¼ ì”€.
+        public GameObject foundationPrefab; //ë¶€ëª¨1
+        public Transform foundationTransform; //ìì‹1 ë‹¤ë¥¸ê±° ì¶”ê°€í•˜ì§€ ì•ŠëŠ” ì´ìƒ ì´ ë…€ì„ì˜ ìì‹ìœ¼ë¡œ Instantiateë¥¼ ë„£ì„ ê²ƒì´ë‹¤.
+        
+        //Instantiateë¥¼ ìœ„í•œ Vector, Rotation
+        public Vector3 weaponVector; //íˆ¬ëª… í”„ë¦¬íŒ¹ì˜ ìœ„ì¹˜
+        public Quaternion weaponRotation; //íˆ¬ëª… í”„ë¦¬íŒ¹ì˜ ê°ë„
+        public Transform trackingPositionSettingPrefab; //íˆ¬ëª… í”„ë¦¬íŒ¹ ì •í™•íˆ Findí•´ì„œ Vector, Rotation ì„¤ì •í•  ìˆ˜ ìˆê²Œ í•´ì¤Œ.
+
+        //Instantiateë¥¼ ìœ„í•œ í”„ë¦¬íŒ¹
+        public GameObject weaponPrefab; //ìƒì„±í•  í”„ë¦¬íŒ¹
 
 
         private void Start()
         {
-            //foundationPrefab = GameObject.Find("Player"); //°¡Àå ³ôÀº ºÎ¸ğ 
-            //¿ø·¡´Â ÇÏÀÌ¾î¶óÅ° Ã¢¿¡ ºó ¿ÀºêÁ§Æ®¿¡ µé¾îÀÖ´Â ÀÖ´Â°Ô WeaponFactoryÀÓ, ÇÏÁö¸¸ ÀÌ°Å´Â ÃÊ±âÈ­¸¦ Start¶§ ÇÏ´Âµ¥, ÇÃ·¹ÀÌ¾î´Â ³ªÁß¿¡ µé¾î¿Â´Ù
-            //±×·¡¼­ °ªÀÌ ¾Èµé¾î°¡¼­ ¹Ù²ãÁÖ±â°¡ ½±Áö ¾ÊÀ½. -> µû¶ó¼­ ÇÃ·¹ÀÌ¾î ¾È¿¡ ±×³É ³Ö¾îÁÜ ±×·¡¼­ ÇÃ·¹ÀÌ¾îÀÇ ÀÚ½ÄÀ¸·Î µé¾î°£´Ù.
-            //ºÎ¸ğ Ã£´Â ÄÚµå´Â ¾Æ´Ï´Ï ÀÛµ¿ ¾ÈÇÔ ±×·¯´Ï »©¾ßÇÔ
+            //foundationPrefab = GameObject.Find("Player"); //ê°€ì¥ ë†’ì€ ë¶€ëª¨ 
+            //ì›ë˜ëŠ” í•˜ì´ì–´ë¼í‚¤ ì°½ì— ë¹ˆ ì˜¤ë¸Œì íŠ¸ì— ë“¤ì–´ìˆëŠ” ìˆëŠ”ê²Œ WeaponFactoryì„, í•˜ì§€ë§Œ ì´ê±°ëŠ” ì´ˆê¸°í™”ë¥¼ Startë•Œ í•˜ëŠ”ë°, í”Œë ˆì´ì–´ëŠ” ë‚˜ì¤‘ì— ë“¤ì–´ì˜¨ë‹¤
+            //ê·¸ë˜ì„œ ê°’ì´ ì•ˆë“¤ì–´ê°€ì„œ ë°”ê¿”ì£¼ê¸°ê°€ ì‰½ì§€ ì•ŠìŒ. -> ë”°ë¼ì„œ í”Œë ˆì´ì–´ ì•ˆì— ê·¸ëƒ¥ ë„£ì–´ì¤Œ ê·¸ë˜ì„œ í”Œë ˆì´ì–´ì˜ ìì‹ìœ¼ë¡œ ë“¤ì–´ê°„ë‹¤.
+            //ë¶€ëª¨ ì°¾ëŠ” ì½”ë“œëŠ” ì•„ë‹ˆë‹ˆ ì‘ë™ ì•ˆí•¨ ê·¸ëŸ¬ë‹ˆ ë¹¼ì•¼í•¨
 
-            //foundationTransform = foundationPrefab.transform.Find("Main Camera"); //°©ÀÚ±â ¿À·ù
-            //trackingPositionSettingPrefab = foundationTransform.transform.Find("PositionSettingPrefab"); //¾êµµ ¿À·ù³ª¼­ Á÷Á¢ ³Ö´Â°É·Î º¯°æ
+            //foundationTransform = foundationPrefab.transform.Find("Main Camera"); //ê°‘ìê¸° ì˜¤ë¥˜
+            //trackingPositionSettingPrefab = foundationTransform.transform.Find("PositionSettingPrefab"); //ì–˜ë„ ì˜¤ë¥˜ë‚˜ì„œ ì§ì ‘ ë„£ëŠ”ê±¸ë¡œ ë³€ê²½
 
         }
 
@@ -41,57 +43,53 @@ namespace FPS.WeaponHandler
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 
-                CreateWeapon("(SG) Bennelli_M4"); //Å×½ºÆ® ¿ëÀÌ´Ï ±×³É ÁÖ¼® Ã³¸®
+                CreateWeapon("(SG) Bennelli_M4"); //í…ŒìŠ¤íŠ¸ ìš©ì´ë‹ˆ ê·¸ëƒ¥ ì£¼ì„ ì²˜ë¦¬
             }
              */
     }
 
         public GameObject CreateWeapon(string weaponName)
         {
-            //Instantiate¸¦ À§ÇÑ Vector, Rotation ÃÊ±âÈ­. ÀÌ ³à¼®Àº ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¿¡ µû¶ó¼­ °è¼Ó º¯ÇÏ´Ï È£ÃâµÇ¸é ÃÊ±âÈ­ ÇØ¾ßÇÑ´Ù.
-            //float distanceFromCamera = 1.0f; // ÀÌ °ªÀº °ÔÀÓ¿¡ µû¶ó Á¶Á¤ÇØ¾ß ÇÕ´Ï´Ù. ÀÓ½Ã·Î °ª ³Ö¾ú´Âµ¥, Á¤È®ÇÑ °ªÀ» ¸ğ¸£°Ú´Ù.
+            //Instantiateë¥¼ ìœ„í•œ Vector, Rotation ì´ˆê¸°í™”. ì´ ë…€ì„ì€ í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ì— ë”°ë¼ì„œ ê³„ì† ë³€í•˜ë‹ˆ í˜¸ì¶œë˜ë©´ ì´ˆê¸°í™” í•´ì•¼í•œë‹¤.
+            //float distanceFromCamera = 1.0f; // ì´ ê°’ì€ ê²Œì„ì— ë”°ë¼ ì¡°ì •í•´ì•¼ í•©ë‹ˆë‹¤. ì„ì‹œë¡œ ê°’ ë„£ì—ˆëŠ”ë°, ì •í™•í•œ ê°’ì„ ëª¨ë¥´ê² ë‹¤.
             weaponVector = new Vector3(trackingPositionSettingPrefab.transform.position.x, trackingPositionSettingPrefab.transform.position.y, trackingPositionSettingPrefab.transform.position.z);
             weaponRotation = trackingPositionSettingPrefab.transform.rotation;
 
             WeaponDataSO weaponData = WeaponSettingAssets.instance[weaponName];
-            //SO¸¦ °¡Á®¿À±ä ÇÏ´Âµ¥, ¸ğµç SO ÇÏ³ªÇÏ³ª ´Ù ÇÏ±â´Â ±×·¯´Ï±î µñ¼Å³Ê¸®·Î ÇÑ ²¨¹ø¿¡ °¡Á®¿À´Â°Ç°¡?
+            //SOë¥¼ ê°€ì ¸ì˜¤ê¸´ í•˜ëŠ”ë°, ëª¨ë“  SO í•˜ë‚˜í•˜ë‚˜ ë‹¤ í•˜ê¸°ëŠ” ê·¸ëŸ¬ë‹ˆê¹Œ ë”•ì…”ë„ˆë¦¬ë¡œ í•œ êº¼ë²ˆì— ê°€ì ¸ì˜¤ëŠ”ê±´ê°€?
 
 
-            //Å×½ºÆ®
-            Debug.Log("CreateWeapon weaponName: " + weaponName); //ÀÌ°Å ¿À·ù´Â Àı´ë ¾È³²
-                                                                 //Å×½ºÆ®ÆÄÆ®
-            Debug.Log("WeaponData.magazineSize: " + weaponData.magazineSize); //°ª Á¸ÀçÇÔ
-            Debug.Log("WeaponData.ammo: " + weaponData.ammo); //°ª Á¸ÀçÇÔ
-            Debug.Log("WeaponUISetup ½ÇÇàµÇ±â Á÷Àü");
+            //í…ŒìŠ¤íŠ¸
+            Debug.Log("CreateWeapon weaponName: " + weaponName); //ì´ê±° ì˜¤ë¥˜ëŠ” ì ˆëŒ€ ì•ˆë‚¨
+                                                                 //í…ŒìŠ¤íŠ¸íŒŒíŠ¸
+            Debug.Log("WeaponData.magazineSize: " + weaponData.magazineSize); //ê°’ ì¡´ì¬í•¨
+            Debug.Log("WeaponData.ammo: " + weaponData.ammo); //ê°’ ì¡´ì¬í•¨
+            Debug.Log("WeaponUISetup ì‹¤í–‰ë˜ê¸° ì§ì „");
 
-            
 
             if (weaponData != null)
             {
-                this.weaponPrefab = weaponData.weaponPrefab; //µé¾î°£ °Í È®ÀÎ
+                this.weaponPrefab = weaponData.weaponPrefab; //ë“¤ì–´ê°„ ê²ƒ í™•ì¸
 
                 GameObject weaponInstance = Instantiate(weaponPrefab, weaponVector, weaponRotation, foundationTransform);
                 //WeaponStat weaponStat = weaponInstance.GetComponent<WeaponStat>();
                 WeaponStat weaponStat = weaponInstance.AddComponent<WeaponStat>();
-                Weapon forWeaponScriptAdd = weaponInstance.AddComponent<Weapon>(); //Weapon ½ºÅ©¸³Æ®¸¦ ºÙ¿©³Ö±â À§ÇØ Á¸ÀçÇÏ´Â ³à¼®
-
-                forWeaponScriptAdd.WeaponUISetup(weaponData); //Å×½ºÆ® ¹«±â UIÀÇ TextMeshPro¸¦ ¹Ù²Ü ¼ö ÀÖ³ª Å×½ºÆ® 
-                                                       //È£Ãâ Á¶Â÷ ¾ÈµÈ´Ù.
 
 
 
-                //»õ·Î ¸¸µç weaponInstance¿¡ weaponStat ½ºÅ©¸³Æ® ºÙÀÌ±â
+
+                //ìƒˆë¡œ ë§Œë“  weaponInstanceì— weaponStat ìŠ¤í¬ë¦½íŠ¸ ë¶™ì´ê¸°
                 if (weaponStat != null)
                 {
-                    Debug.Log("weaponStat.Setup(weaponData) ½ÇÇà");
-                    weaponStat.Setup(weaponData); //ÀÌ ÇÔ¼ö´Â SOÀÌ¿ëÇØ µ¥ÀÌÅÍ ÀÚµ¿À¸·Î ÃÊ±âÈ­ÇØÁØ´Ù.
-                                                  //weaponStat.TestPrint(); //Å×½ºÆ® ¿ë ÇÔ¼ö
+                    Debug.Log("weaponStat.Setup(weaponData) ì‹¤í–‰");
+                    weaponStat.Setup(weaponData); //ì´ í•¨ìˆ˜ëŠ” SOì´ìš©í•´ ë°ì´í„° ìë™ìœ¼ë¡œ ì´ˆê¸°í™”í•´ì¤€ë‹¤.
+                                                  //weaponStat.TestPrint(); //í…ŒìŠ¤íŠ¸ ìš© í•¨ìˆ˜
 
 
                 }
                 else
                 {
-                    Debug.LogError("WeaponStat ÄÄÆ÷³ÍÆ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+                    Debug.LogError("WeaponStat ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
                 }
                 return weaponInstance;
             }

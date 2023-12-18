@@ -1,47 +1,48 @@
+
 using System;
+
 using UnityEngine;
 
 namespace FPS.WeaponSO
 {
     public enum WeaponType
     {
-        MainArm, //1¹ø ½½·Ô ¹«±â ¸ŞÀÎ ¹«±â
-        SideArm, //2¹ø ½½·Ô ¹«±â ±ÇÃÑ »ı°¢Áß
-        Melee, //3¹ø ½½·Ô ¹«±â ±ÙÁ¢ ¹«±â
-        Explosive, //4¹ø ½½·Ô Æø¹ß¹°, ¼ÒÀÌ¼ö·ùÅº µîµî
-        SpecialWeapon, //5¹ø ½½·Ô Æ¯¼ö¹«±â: ÅõÃ´¹«±â ½´¸®ÄË, °íµå¸§, ¼ö¸®°Ë °°Àº°Å
-        Grappling, //6¹ø ½½·Ô: ·Î¸ÁÀÎ ±×·¡ÇÃ¸µ °Ç!!
+        MainArm, //1ë²ˆ ìŠ¬ë¡¯ ë¬´ê¸° ë©”ì¸ ë¬´ê¸°
+        SideArm, //2ë²ˆ ìŠ¬ë¡¯ ë¬´ê¸° ê¶Œì´ ìƒê°ì¤‘
+        Melee, //3ë²ˆ ìŠ¬ë¡¯ ë¬´ê¸° ê·¼ì ‘ ë¬´ê¸°
+        Explosive, //4ë²ˆ ìŠ¬ë¡¯ í­ë°œë¬¼, ì†Œì´ìˆ˜ë¥˜íƒ„ ë“±ë“±
+        SpecialWeapon, //5ë²ˆ ìŠ¬ë¡¯ íŠ¹ìˆ˜ë¬´ê¸°: íˆ¬ì²™ë¬´ê¸° ìŠˆë¦¬ì¼„, ê³ ë“œë¦„, ìˆ˜ë¦¬ê²€ ê°™ì€ê±°
+        Grappling, //6ë²ˆ ìŠ¬ë¡¯: ë¡œë§ì¸ ê·¸ë˜í”Œë§ ê±´!!
     }
 
     [CreateAssetMenu(fileName = "Weapon", menuName = "WeaponSO")]
     public class WeaponDataSO : ScriptableObject
     {
         /// <summary>
-        /// »ç¿ë ¹æ¹ı: 
-        /// Å¸ÀÔ¿¡ µû¶ó ÀÏÄ¡ÇÏ´Â ÇÔ¼ö¸¦ È£ÃâÇÏ°Ô ÇÒ ¼ö ÀÖ´Ù. ex) ±×·¡ÇÃ¸µ °Ç ÇÔ¼ö ºÒ·¯¿À±â, ¼¦°Ç Á¡ÇÁ ºÒ·¯¿À±â,
-        /// ÅõÃ´¹°, ±× Áß¿¡ ¼ÒÀÌ ¼ö·ùÅºÀÌ¸é È­¿° Áö´ë ¼ÒÈ¯ µîµîµî
-        /// ¾µ°Å¸é ¾²°í ¾Æ´Ï¸é ¸»°í
+        /// ì‚¬ìš© ë°©ë²•: 
+        /// íƒ€ì…ì— ë”°ë¼ ì¼ì¹˜í•˜ëŠ” í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ê²Œ í•  ìˆ˜ ìˆë‹¤. ex) ê·¸ë˜í”Œë§ ê±´ í•¨ìˆ˜ ë¶ˆëŸ¬ì˜¤ê¸°, ìƒ·ê±´ ì í”„ ë¶ˆëŸ¬ì˜¤ê¸°,
+        /// íˆ¬ì²™ë¬¼, ê·¸ ì¤‘ì— ì†Œì´ ìˆ˜ë¥˜íƒ„ì´ë©´ í™”ì—¼ ì§€ëŒ€ ì†Œí™˜ ë“±ë“±ë“±
+        /// ì“¸ê±°ë©´ ì“°ê³  ì•„ë‹ˆë©´ ë§ê³ 
         /// </summary>
-
 
         public WeaponType weaponType;
 
         [Header("WeaponName")]
-        public string weaponName; //½ºÅ©¸³ÅÍºí ¿ÀºêÁ§Æ®¸¦ ºÎ¸£±â À§ÇÑ ÀÌ¸§
-        public string weaponNameFinder;//Find¸¦ ÇÏ±â À§ÇÑ ÀÌ¸§
+        public string weaponName; //ìŠ¤í¬ë¦½í„°ë¸” ì˜¤ë¸Œì íŠ¸ë¥¼ ë¶€ë¥´ê¸° ìœ„í•œ ì´ë¦„
+        public string weaponNameFinder;//Findë¥¼ í•˜ê¸° ìœ„í•œ ì´ë¦„
 
-        //±âÃÊÀûÀÎ º¯¼öµé
+        //ê¸°ì´ˆì ì¸ ë³€ìˆ˜ë“¤
         [Header("Elementry Variable")]
-        public int damage; //µ©
-        public float fireRate; //¹ß»ç ÁÖ±â
-        //Main Camera´Â ¾Ë¾Æ¼­ Find·Î Weapon.cs¿¡ ³Ö¾îÁÖÀÚ
+        public int damage; //ë€
+        public float fireRate; //ë°œì‚¬ ì£¼ê¸°
+        //Main CameraëŠ” ì•Œì•„ì„œ Findë¡œ Weapon.csì— ë„£ì–´ì£¼ì
 
-        public float range; //»ç°Å¸®
+        public float range; //ì‚¬ê±°ë¦¬
 
         [Header("Ammo")]
-        public int ammo; //ÃÑ¿¡ µé¾î°¡´Â ÃÑ¾Ë °³¼ö
-        public int magazineSize; //ÅºÃ¢ °³¼ö
-        public int fullMagazine; //ÁÖ¾îÁö´Â ÃÑ ÅºÃ¢ Å©±â
+        public int ammo; //ì´ì— ë“¤ì–´ê°€ëŠ” ì´ì•Œ ê°œìˆ˜
+        public int magazineSize; //íƒ„ì°½ ê°œìˆ˜
+        public int fullMagazine; //ì£¼ì–´ì§€ëŠ” ì´ íƒ„ì°½ í¬ê¸°
 
         [Header("Prefab")]
         public GameObject weaponPrefab;
@@ -51,18 +52,34 @@ namespace FPS.WeaponSO
         public float removeFireHole;
 
         [Header("Animation")]
-        //public Animation animationForWeapon; //ak74 ÇÁ¸®ÆÕÀÇ °æ¿ì ak74¸¦ ³Ö¾ú´Ù. ÇØ´ç ÃÑ±âÀÇ ÇÁ¸®ÆÕÀ» ³Ö¾î¾ß ÇÏ´Â µí ÇÏ´Ù.
-        //±×·¯´Ï Weapon.cs¿¡¼­ FindÀÌ¿ëÇØ¼­ ³Ö¾îÁÖÀÚ
-        public AnimationClip reloadAnimation; //¹Ì¸® ¸¸µç ¾Ö´Ï¸ŞÀÌ¼Ç Å¬¸³À» ³Ö´Â´Ù
+        //public Animation animationForWeapon; //ak74 í”„ë¦¬íŒ¹ì˜ ê²½ìš° ak74ë¥¼ ë„£ì—ˆë‹¤. í•´ë‹¹ ì´ê¸°ì˜ í”„ë¦¬íŒ¹ì„ ë„£ì–´ì•¼ í•˜ëŠ” ë“¯ í•˜ë‹¤.
+        //ê·¸ëŸ¬ë‹ˆ Weapon.csì—ì„œ Findì´ìš©í•´ì„œ ë„£ì–´ì£¼ì
+        public AnimationClip reloadAnimation; //ë¯¸ë¦¬ ë§Œë“  ì• ë‹ˆë©”ì´ì…˜ í´ë¦½ì„ ë„£ëŠ”ë‹¤
 
-        //¹İµ¿
+        //ë°˜ë™
         [Header("Recoil Settings")]
         public float recoverPercent;
         public float recoilUp;
         public float recoilBack;
         public bool recovering;
 
-        // ±âÅ¸ ÇÊ¿äÇÑ ÃÑ±â Æ¯¼ºµé Ãß°¡...
+        // ê¸°íƒ€ í•„ìš”í•œ ì´ê¸° íŠ¹ì„±ë“¤ ì¶”ê°€...
+
+
+        public WeaponType weaponType; 
+
+        //ê¸°ì´ˆì ì¸ ë³€ìˆ˜ë“¤
+        public string weaponName; //ë¬´ê¸° ë„¤ì„
+        public float damage; //ë€
+        public float range; //ì‚¬ê±°ë¦¬
+        public float fireRate; //ë°œì‚¬ ì£¼ê¸°
+        public int ammo; //ì´ì— ë“¤ì–´ê°€ëŠ” ì´ì•Œ ê°œìˆ˜
+        public int magazineSize; //íƒ„ì°½ ê°œìˆ˜
+        public int totalMagazine; //ì£¼ì–´ì§€ëŠ” ì´ íƒ„ì°½ í¬ê¸°
+
+        public GameObject weaponPrefab;
+        // ê¸°íƒ€ í•„ìš”í•œ ì´ê¸° íŠ¹ì„±ë“¤ ì¶”ê°€...
+
 
     }
 }

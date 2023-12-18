@@ -5,7 +5,7 @@ using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-using FPS.WeaponSO; //½ºÅ©¸³ÅÍºí ¿ÀºêÁ§Æ® µ¥ÀÌÅÍ ²ø°í ¿À±â À§ÇØ¼­ »ç¿ë
+using FPS.WeaponSO; //ìŠ¤í¬ë¦½í„°ë¸” ì˜¤ë¸Œì íŠ¸ ë°ì´í„° ëŒê³  ì˜¤ê¸° ìœ„í•´ì„œ ì‚¬ìš©
 
 namespace FPS.Lee.WeaponDetail
 {
@@ -33,7 +33,7 @@ namespace FPS.Lee.WeaponDetail
         public TextMeshProUGUI ammoText;
 
         [Header("Animation")]
-        public Animation weaponAnimation; //<-- ÀÌ³ğ ½¬Å° ¹¹ÀÓ??
+        public Animation weaponAnimation; //<-- ì´ë†ˆ ì‰¬í‚¤ ë­ì„??
         public AnimationClip reloadAnimation;
 
         [Header("Recoil Settings")]
@@ -65,7 +65,7 @@ namespace FPS.Lee.WeaponDetail
 
 
             _photonView = GetComponent<PhotonView>();
-            //magText.text = mag.ToString(); //¾Æ·¡·Î ´ëÃ¼µÇ¾úÁö¸¸, ÀÎÁöÇÏ¶ó°í ÁÖ¼®Ã³¸®
+            //magText.text = mag.ToString(); //ì•„ë˜ë¡œ ëŒ€ì²´ë˜ì—ˆì§€ë§Œ, ì¸ì§€í•˜ë¼ê³  ì£¼ì„ì²˜ë¦¬
             //ammoText.text = ammo + "/" + magAmmo;
             magText = GameObject.Find("MagText").GetComponent<TextMeshProUGUI>();
             ammoText = GameObject.Find("AmmoText").GetComponent<TextMeshProUGUI>();
@@ -89,8 +89,8 @@ namespace FPS.Lee.WeaponDetail
                 nextFire = 1 / fireRate;
                 ammo--;
 
-                magText.text = mag.ToString(); //n°³ÀÇ °³¼ö UI¿¡ ¼öÁ¤
-                ammoText.text = ammo + "/" + fullMagazine; //mn°³ÀÇ ÃÑ¾Ë °³¼ö UI¿¡ ¼öÁ¤
+                magText.text = mag.ToString(); //nê°œì˜ ê°œìˆ˜ UIì— ìˆ˜ì •
+                ammoText.text = ammo + "/" + fullMagazine; //mnê°œì˜ ì´ì•Œ ê°œìˆ˜ UIì— ìˆ˜ì •
 
                 Fire();
             }
@@ -113,16 +113,16 @@ namespace FPS.Lee.WeaponDetail
         public void WeaponUISetup(WeaponDataSO weaponData)
         {
             //Elementry Variable
-            damage = weaponData.damage; //µ©
-            fireRate = weaponData.fireRate; //¹ß»ç ÁÖ±â
+            damage = weaponData.damage; //ë€
+            fireRate = weaponData.fireRate; //ë°œì‚¬ ì£¼ê¸°
             mainCamera = GetComponentInParent<Camera>();
-            //mainCamera = Camera.main;//¸ŞÀÎÄ«¸Ş¶ó Ã£±â. ¾À¿¡ ÀÖ´Â ¸ŞÀÎ Ä«¸Ş¶ó ÅÂ±× °¡Áø Ä«¸Ş¶ó¿¡ Á¢±ÙÇÏ´Â ¹æ¹ı.
-            //ÀÎµ¥... ÅÂ±×°¡ MainCameraÀÎ Ã¹ ¹øÂ° È°¼º Ä«¸Ş¶ó¸¦ Ã£¾Æ¼­ ¸ğµç ÇÃ·¹ÀÌ¾î°¡ °°ÀÌ ¿òÁ÷ÀÌ´Â ¹®Á¦°¡ ¹ß»ıÇÑ´Ù.
+            //mainCamera = Camera.main;//ë©”ì¸ì¹´ë©”ë¼ ì°¾ê¸°. ì”¬ì— ìˆëŠ” ë©”ì¸ ì¹´ë©”ë¼ íƒœê·¸ ê°€ì§„ ì¹´ë©”ë¼ì— ì ‘ê·¼í•˜ëŠ” ë°©ë²•.
+            //ì¸ë°... íƒœê·¸ê°€ MainCameraì¸ ì²« ë²ˆì§¸ í™œì„± ì¹´ë©”ë¼ë¥¼ ì°¾ì•„ì„œ ëª¨ë“  í”Œë ˆì´ì–´ê°€ ê°™ì´ ì›€ì§ì´ëŠ” ë¬¸ì œê°€ ë°œìƒí•œë‹¤.
 
             //Ammo
-            mag = weaponData.magazineSize; //ÃÊ±âÈ­
-            ammo = weaponData.ammo; //ÃÊ±âÈ­
-            fullMagazine = weaponData.fullMagazine; //ÃÊ±âÈ­
+            mag = weaponData.magazineSize; //ì´ˆê¸°í™”
+            ammo = weaponData.ammo; //ì´ˆê¸°í™”
+            fullMagazine = weaponData.fullMagazine; //ì´ˆê¸°í™”
 
             //VFX Effect
             hitVFX = weaponData.hitVFX;
@@ -130,13 +130,13 @@ namespace FPS.Lee.WeaponDetail
 
             //UI
 
-            //¾Ö´Ï¸ŞÀÌ¼Ç
-            Camera clonedObject = GetComponentInParent<Camera>(); //Camera.main Á¦°Å
+            //ì• ë‹ˆë©”ì´ì…˜
+            Camera clonedObject = GetComponentInParent<Camera>(); //Camera.main ì œê±°
             string cloneAnimationFinder = weaponData.weaponNameFinder + "(Clone)";
-            Transform gunTransform = clonedObject.transform.Find(cloneAnimationFinder); //¼³¸¶Çß´Âµ¥ (Clone)ºüÁ³´Ù°í ÀÌ¸§ÀÌ Æ²¸®´Ï±î Find¸¦ ¸øÇÏ³× ¤»¤»¤»¤»¤»¤»
+            Transform gunTransform = clonedObject.transform.Find(cloneAnimationFinder); //ì„¤ë§ˆí–ˆëŠ”ë° (Clone)ë¹ ì¡Œë‹¤ê³  ì´ë¦„ì´ í‹€ë¦¬ë‹ˆê¹Œ Findë¥¼ ëª»í•˜ë„¤ ã…‹ã…‹ã…‹ã…‹ã…‹ã…‹
             //Transform gunTransform = clonedObject.transform.Find(weaponData.weaponNameFinder);
-            Debug.Log($"weaponData³×ÀÓÆÄÀÎ´õ: {weaponData.weaponNameFinder}");
-            weaponAnimation = gunTransform.GetComponent<Animation>(); //ÃÑ±â ¾Ö´Ï¸ŞÀÌ¼Ç ¾øÀ¸¸é ¿¡·¯³­´Ù.
+            Debug.Log($"weaponDataë„¤ì„íŒŒì¸ë”: {weaponData.weaponNameFinder}");
+            weaponAnimation = gunTransform.GetComponent<Animation>(); //ì´ê¸° ì• ë‹ˆë©”ì´ì…˜ ì—†ìœ¼ë©´ ì—ëŸ¬ë‚œë‹¤.
 
 
             if(weaponAnimation == null)
@@ -149,14 +149,14 @@ namespace FPS.Lee.WeaponDetail
             }
 
 
-            //weaponAnimation = GameObject.Find(weaponData.weaponNameFinder); //ak74 ÇÁ¸®ÆÕÀÇ °æ¿ì ak74¸¦ ³Ö¾ú´Ù. ±×·¡¼­ ÀÏ´Ü ÁÖ¼®Ã³¸® ÇÊ¿äÇÏ¸é ÈÄ¿¡ ³Ö´Â´Ù
-            reloadAnimation = weaponData.reloadAnimation; //¹Ì¸® ¸¸µç ¾Ö´Ï¸ŞÀÌ¼Ç Å¬¸³ ³Ö¾îÁÜ.
+            //weaponAnimation = GameObject.Find(weaponData.weaponNameFinder); //ak74 í”„ë¦¬íŒ¹ì˜ ê²½ìš° ak74ë¥¼ ë„£ì—ˆë‹¤. ê·¸ë˜ì„œ ì¼ë‹¨ ì£¼ì„ì²˜ë¦¬ í•„ìš”í•˜ë©´ í›„ì— ë„£ëŠ”ë‹¤
+            reloadAnimation = weaponData.reloadAnimation; //ë¯¸ë¦¬ ë§Œë“  ì• ë‹ˆë©”ì´ì…˜ í´ë¦½ ë„£ì–´ì¤Œ.
 
             //RecoilSettings
             recoverPercent = weaponData.recoverPercent;
             recoilUp = weaponData.recoilUp;
             recoilBack = weaponData.recoilBack;
-            //recovering = weaponData.recovering; //¿¡·¯ ¶°¼­ ÁÖ¼®Ã³¸®
+            //recovering = weaponData.recovering; //ì—ëŸ¬ ë– ì„œ ì£¼ì„ì²˜ë¦¬
         }
 
     void Reload()
@@ -177,7 +177,7 @@ namespace FPS.Lee.WeaponDetail
             recoiling = true;
             recovering = false;
 
-            Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward); //¿À·ù: UnassignedReferenceException: The variable camera of Weapon has not been assigned.
+            Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward); //ì˜¤ë¥˜: UnassignedReferenceException: The variable camera of Weapon has not been assigned.
                                                                                     //You probably need to assign the camera variable of the Weapon script in the inspector.
             RaycastHit hit;
             int playermask = 1 << gameObject.layer;
@@ -252,3 +252,206 @@ namespace FPS.Lee.WeaponDetail
         }
     }//class
 }//namespace
+=======
+public class Weapon : MonoBehaviour
+{
+
+    public int damage;
+    public float fireRate;
+
+    public Camera camera;
+
+    private float nextFire;
+
+    [Header("VFX EFFECT")]
+    public GameObject hitVFX;
+    public float removeFireHole;
+    [Header("Ammo")]
+    public int mag = 5;
+    public int ammo = 30;
+    public int magAmmo = 30;
+
+    [Header("UI")]
+    public TextMeshProUGUI magText;
+    public TextMeshProUGUI ammoText;
+
+    [Header("Animation")]
+    public Animation animation;
+    public AnimationClip reload;
+
+    [Header("Recoil Settings")]
+    /*[Range(0, 1)]
+    public float recoilPercent = 0.3f;*/
+
+    [Range(0, 2)]
+    public float recoverPercent = 0.7f;
+
+    [Space]
+    public float recoilUp = 1f;
+
+    public float recoilBack = 0f;
+
+    private Vector3 originalPosition;
+    private Vector3 recoilVelocity = Vector3.zero;
+    
+    private float recoilLength;
+    private float recoverLength;
+
+    private bool recoiling;
+    public bool recovering;
+
+    private PhotonView _photonView;
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        _photonView = GetComponent<PhotonView>();
+        //magText.text = mag.ToString(); //ì•„ë˜ë¡œ ëŒ€ì²´ë˜ì—ˆì§€ë§Œ, ì¸ì§€í•˜ë¼ê³  ì£¼ì„ì²˜ë¦¬
+        //ammoText.text = ammo + "/" + magAmmo;
+        magText = GameObject.Find("MagText").GetComponent<TextMeshProUGUI>();
+        ammoText = GameObject.Find("AmmoText").GetComponent<TextMeshProUGUI>();
+
+
+
+        originalPosition = transform.localPosition;
+
+        recoilLength  = 0;
+        recoverLength = 1 / fireRate * recoverPercent;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(nextFire > 0)
+           nextFire -= Time.deltaTime;
+        
+        if(Input.GetButton("Fire1") && nextFire <= 0 && ammo > 0 && animation.isPlaying == false)
+        {
+            nextFire = 1 / fireRate;
+            ammo--;
+
+            magText.text = mag.ToString();
+            ammoText.text = ammo + "/" + magAmmo;
+
+            Fire();
+        }
+        if(Input.GetKeyDown(KeyCode.R) && mag > 0 && ammo < 30)
+        {
+            Reload();
+        }
+
+        if(recoiling)
+        {
+            Recoil();
+        }
+       if(recovering)
+        {
+            Recovering();
+        }
+    }
+
+
+    public void WeaponUISetup(WeaponDataSO weaponData)
+    {
+        Debug.Log("í˜¸ì¶œì€ ë˜ë‚˜??"); ///í˜¸ì¶œì¡°ì°¨ ì•ˆ ëœë‹¤
+
+        magText.text = weaponData.magazineSize.ToString();
+        ammoText.text = weaponData.ammo.ToString();
+        Debug.Log("WeaponUISetup í•¨ìˆ˜ ì‹¤í–‰ëë‹¤, weaponData: " + weaponData);
+    }
+
+
+    void Reload()
+    {
+        animation.Play(reload.name);
+        if(mag > 0)
+        {
+            mag--;
+
+            ammo = magAmmo;
+        }
+        magText.text = mag.ToString();
+        ammoText.text = ammo + "/" + magAmmo;
+    }
+
+    public void Fire()
+    {
+        recoiling = true;
+        recovering = false;
+
+        Ray ray = new Ray(camera.transform.position, camera.transform.forward); //ì˜¤ë¥˜: UnassignedReferenceException: The variable camera of Weapon has not been assigned.
+                                                                                //You probably need to assign the camera variable of the Weapon script in the inspector.
+        RaycastHit hit;
+        int playermask = 1 << gameObject.layer;
+
+        if (Physics.Raycast(ray.origin, ray.direction, out hit, 100f, playermask))
+        {
+            if (hit.transform.TryGetComponent(out Health health))
+            {
+                health.TakeDamageClientRpc(damage);
+            }
+        }
+        else if (Physics.Raycast(ray.origin, ray.direction, out hit, 100f, ~playermask))
+        {
+            EffectSpawner.instance.SpawnBulletEffectClientRpc(hit.point, hit.normal);
+        }
+
+        return;
+
+    
+
+        //Ray ray = new Ray(camera.transform.position, camera.transform.forward);
+        //
+        //RaycastHit hit;
+        //int playermask = 1 << gameObject.layer;
+        //
+        //
+        //if (Physics.Raycast( ray.origin, ray.direction, out hit, 100f,playermask))
+        //{
+        //    if(hit.transform.gameObject.GetComponent<Health>())
+        //    {
+        //        hit.transform.gameObject.GetComponent<PhotonView>().RPC("TakeDamage",RpcTarget.All,damage);
+        //    }
+        //}
+        //else if(Physics.Raycast(ray.origin, ray.direction, out hit, 100f, ~playermask))
+        //{
+        //    GameObject hitInfo = PhotonNetwork.Instantiate(hitVFX.name, hit.point, Quaternion.LookRotation(hit.normal));
+        //    Destroy(hitInfo, 5f);
+        //    hitInfo.transform.position += hitInfo.transform.forward / 1000;
+        //}
+        
+    }
+
+    void Recoil()
+    {
+        Vector3 finalPosition = new Vector3(originalPosition.x,
+                                            originalPosition.y + recoilUp,
+                                            originalPosition.z + recoilBack);
+
+        transform.localPosition = Vector3.SmoothDamp(transform.localPosition,
+                                                     finalPosition,
+                                                     ref recoilVelocity,
+                                                     recoilLength);
+        if(transform.localPosition == finalPosition)
+        {
+            recoiling = false;
+            recovering = true;
+        }
+    }
+    void Recovering()
+    {
+        Vector3 finalPosition = originalPosition;
+
+        transform.localPosition = Vector3.SmoothDamp(transform.localPosition,
+                                                     finalPosition,
+                                                     ref recoilVelocity,
+                                                     recoverLength);
+        if (transform.localPosition == finalPosition)
+        {
+            recoiling = false;
+            recovering = false;
+        }
+    }
+
+
+}

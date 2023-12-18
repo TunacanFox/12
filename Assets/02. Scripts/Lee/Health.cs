@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
 {
 
     public int health;
+    public bool isLocalPlayer;
 
     [Header("UI")]
     public TextMeshProUGUI healthText;
@@ -25,7 +26,7 @@ public class Health : MonoBehaviour
         _photonView.RPC("TakeDamage", RpcTarget.All, new object[] { damage });
     }
 
-    // RPC ÇÔ¼ö°¡ ÀÌ¸§À¸·Î ÇÔ¼ö¸¦ °Ë»öÇØ¼­ È£ÃâÇÏ´Â ·ÎÁ÷ ¿¹Á¦
+    // RPC í•¨ìˆ˜ê°€ ì´ë¦„ìœ¼ë¡œ í•¨ìˆ˜ë¥¼ ê²€ìƒ‰í•´ì„œ í˜¸ì¶œí•˜ëŠ” ë¡œì§ ì˜ˆì œ
     public void RPC(string methodName, RpcTarget target, object[] parameters)
     {
         var monos = gameObject.GetComponentsInChildren<MonoBehaviour>();
@@ -66,3 +67,12 @@ public class Health : MonoBehaviour
 
 
 
+            if (health <= 0)
+        {
+            if(isLocalPlayer)
+                RoomManager.instance.SpawnPlayer();
+
+            Destroy(gameObject);
+        }
+    }
+}

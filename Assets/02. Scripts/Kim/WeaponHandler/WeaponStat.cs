@@ -5,33 +5,32 @@ namespace FPS.WeaponHandler
 {
     public class WeaponStat : MonoBehaviour
     {
-        //enum Å¸ÀÔÀÎ WeaponEffectType weaponType ÀÌ°Å´Â namespace·Î ºÒ·¯¿Í¼­ ¾²¸é µÈ´Ù.
+        //enum íƒ€ì…ì¸ WeaponEffectType weaponType ì´ê±°ëŠ” namespaceë¡œ ë¶ˆëŸ¬ì™€ì„œ ì“°ë©´ ëœë‹¤.
 
-        //±âÃÊÀûÀÎ º¯¼öµé
-        public string weaponName; //¹«±â ³×ÀÓ
-        public float damage; //µ©
-        public float range; //»ç°Å¸®
-        public float fireRate; //¹ß»ç ÁÖ±â
-        public int magazineSize; //ÅºÃ¢ Å©±â
-        public int totalMagazine; //ÁÖ¾îÁö´Â ÃÑ ÅºÃ¢ Å«±â
+        //ê¸°ì´ˆì ì¸ ë³€ìˆ˜ë“¤
+        public string weaponName; //ë¬´ê¸° ë„¤ì„
+        public float damage; //ë€
+        public float range; //ì‚¬ê±°ë¦¬
+        public float fireRate; //ë°œì‚¬ ì£¼ê¸°
+        public int magazineSize; //íƒ„ì°½ í¬ê¸°
+        public int totalMagazine; //ì£¼ì–´ì§€ëŠ” ì´ íƒ„ì°½ í°ê¸°
 
         public GameObject weaponPrefab;
 
 
         public void Setup(WeaponDataSO weaponData)
         {
-            //ÃÑ±â ½ºÅÈ ÃÊ±âÈ­ -> WeaponFactory¿¡¼­ ÀÌ ½ºÅ©¸³Æ® ºÙ¿©³Ö°Ô ÇÏ°í, ÀÌ ÇÔ¼ö ºÒ·¯¼­ ÃÊ±âÈ­ÇÏ°Ô ÇÑ´Ù.
+            //ì´ê¸° ìŠ¤íƒ¯ ì´ˆê¸°í™” -> WeaponFactoryì—ì„œ ì´ ìŠ¤í¬ë¦½íŠ¸ ë¶™ì—¬ë„£ê²Œ í•˜ê³ , ì´ í•¨ìˆ˜ ë¶ˆëŸ¬ì„œ ì´ˆê¸°í™”í•˜ê²Œ í•œë‹¤.
             weaponName = weaponData.weaponName;
             damage = weaponData.damage;
             range = weaponData.range;
             fireRate = weaponData.fireRate;
             magazineSize = weaponData.magazineSize;
-            totalMagazine = weaponData.fullMagazine;
 
             weaponPrefab = weaponData.weaponPrefab;
         }
 
-        public void TestPrint() //°ª Àß µé¾î°¬³ª Ã¼Å© ¿ë (¸ÁÇÒ »ı°¢ÇØº¸´Ï ¿¡µğÅÍ¿¡¼­ È®ÀÎÇØµµ ¹«¹æÇÏ³×)
+        public void TestPrint() //ê°’ ì˜ ë“¤ì–´ê°”ë‚˜ ì²´í¬ ìš© (ë§í•  ìƒê°í•´ë³´ë‹ˆ ì—ë””í„°ì—ì„œ í™•ì¸í•´ë„ ë¬´ë°©í•˜ë„¤)
         {
             Debug.Log($"weaponName: {weaponName}");
             Debug.Log($"damage: {damage}");

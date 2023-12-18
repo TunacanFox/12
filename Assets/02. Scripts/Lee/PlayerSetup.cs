@@ -21,6 +21,16 @@ public class PlayerSetup : MonoBehaviour
     private void OnDestroy()
     {
         spawned.Remove(_photonView.Owner.UserId);
+    public Movement movement;
+    public GameObject camera;
+
+    public string nickName;
+
+    public TextMeshPro nickNameText;
+    public void IsLocalPlayer()
+    {
+        movement.enabled = true;
+        camera.SetActive(true);
     }
 
     [PunRPC]
